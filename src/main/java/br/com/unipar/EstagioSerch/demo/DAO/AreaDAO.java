@@ -12,7 +12,7 @@ public class AreaDAO {
 
     @Autowired
     private JdbcTemplate template;
-    
+    // Teste GitHub
     public List<Area> lista(){
         
         String sql =
