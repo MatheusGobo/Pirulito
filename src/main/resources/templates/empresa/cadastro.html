@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" th:href="@{/estilos.css}" />
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="stylesheet" type='text/css' th:href="@{/webjars/material-design-lite/material.min.css}" />
+        <script type="text/javascript" th:src='@{/webjars/jquery/jquery.min.js}'></script>
+    </head>
+    <body>
+         <form class="inline" method="post" th:object='${empresa}'>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <label class="mdl-textfield__label" for="Social">Razão Social</label>
+            <input class="mdl-textfield__input" type="text" th:field='*{nm_razao}'>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <label class="mdl-textfield__label" for="fantasia">Nome fantasia</label>
+            <input class="mdl-textfield__input" type="text" th:field='*{nm_fantasia}'>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <label class="mdl-textfield__label" for="CNPJ">CNPJ</label>
+            <input class="mdl-textfield__input" type="text" th:field='*{nr_cnpj}'>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <label class="mdl-textfield__label" for="representante">Nome representante</label>
+            <input class="mdl-textfield__input" type="text" th:field='*{nm_representante}'>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <label class="mdl-textfield__label" for="Universidade">Universidade</label>
+            <input class="mdl-textfield__input" type="text" th:field='*{st_universidade}'>
+        </div>
+             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised">Gravar</button>
+</form>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+    
+     <h2>Lista de Empresas</h2>
+    
+         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp m-b">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                <th class="mdl-data-table__cell--non-numeric">Abrangência</th>
+                <th class="mdl-data-table__cell--non-numeric">Acomodação</th>
+                <th class="mdl-data-table__cell--non-numeric">Rede</th>
+                <th class="mdl-data-table__cell--non-numeric">Co-participação</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="empresa : ${empresas}">
+                <td th:text="${empresa.cd_empresa}"></td>
+                <td th:text="${empresa.nm_razao}"></td>
+                <td th:text="${empresa.nm_fantasia}"></td>
+                <td th:text="${empresa.nr_cnpj}"></td>
+                <td th:text="${empresa.nm_representante}"></td>
+                <td th:text="${empresa.st_universidade}"></td>
+                <td>
+                    <button id="delete-empresa"class="delete-empresa-bt" th:attr='data-target=${empresa.cd_empresa}'>
+                        <i class="material-icons">delete</i>
+                    </button>
+                </td>
+                <td>
+                    <a class="mdl-button mdl-js-button mdl-button--icon" th:href='@{/empresa/cadastro/{codigo}(codigo=${empresa.cd_empresa})}'>
+                        <i class="material-icons">edit</i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+     
+</div>
