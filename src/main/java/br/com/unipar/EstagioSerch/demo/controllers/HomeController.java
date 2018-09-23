@@ -16,8 +16,12 @@ public class HomeController {
     public ArrayList vagas = new ArrayList();
     
     @RequestMapping("/")
-    public String home(Model model) {
-        model.addAttribute("teste", "bIHOU");
+    public String home(Model model,boolean status) {
+    /*    if(status == true) {
+            return "index";
+        }else{
+            return "login";
+        }*/
         return "index";
     }
     

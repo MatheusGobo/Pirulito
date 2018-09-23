@@ -1,52 +1,17 @@
+
 <div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
-    
-     <h2>Lista de Empresas</h2>
-    
-         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp m-b">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th class="mdl-data-table__cell--non-numeric">Nome</th>
-                <th class="mdl-data-table__cell--non-numeric">Abrangência</th>
-                <th class="mdl-data-table__cell--non-numeric">Acomodação</th>
-                <th class="mdl-data-table__cell--non-numeric">Rede</th>
-                <th class="mdl-data-table__cell--non-numeric">Co-participação</th>
-                <th colspan="2"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="vaga : ${vagas}">
-                            
-                <td th:text="${vaga.cd_empresa}"></td>
-                <td th:text="${vaga.nm_razao}"></td>
-                <td th:text="${vaga.nm_fantasia}"></td>
-                <td th:text="${vaga.nr_cnpj}"></td>
-                <td th:text="${vaga.nm_representante}"></td>
-                <td th:text="${vaga.st_universidade}"></td>
-                <td>
-                    <button id="delete-empresa"class="delete-empresa-bt" th:attr='data-target=${empresa.cd_empresa}'>
-                        <i class="material-icons">delete</i>
-                    </button>
-                </td>
-                <td>
-                    <a class="mdl-button mdl-js-button mdl-button--icon" th:href='@{/empresa/cadastro/{codigo}(codigo=${empresa.cd_empresa})}'>
-                        <i class="material-icons">edit</i>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-      <script>
-        function deletaEmpresa(event) {
-            var button = $(event.target).parent();
-            var codigoEmpresa = button.data("target");
-            $.ajax(`empresas/${codigoEmpresa}`, {
-                type: "DELETE"
-            }).done(() => {
-                button.closest("tr").remove();
-            });
-        }
-        $(".delete-empresa-bt").on('click', deletaEmpresa);
-    </script>
-     
+
+    <h2 data-th-cellspacing="20px">Vagas Disponiveis</h2>
+
+    <div th:each="vaga : ${vagas}">
+        <div class="jumbotron">
+
+            <h1 class="display-4" th:text="${vaga.ds_titulo}"></h1>
+            <p class="lead" th:text="${vaga.ds_vaga}">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <hr class="my-4">
+            <p th:text="${vaga.ds_requisitos}">It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Saber Mais</a>
+
+        </div>
+    </div>
 </div>

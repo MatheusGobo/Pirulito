@@ -274,7 +274,10 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
   }
 }
 
-
+:root {
+  --input-padding-x: 0.75rem;
+  --input-padding-y: 0.75rem;
+}
 
 .card-login {
   max-width: 25rem;

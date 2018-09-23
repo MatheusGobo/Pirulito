@@ -1,7 +1,9 @@
 
 package br.com.unipar.EstagioSerch.demo.controllers;
 
+import br.com.unipar.EstagioSerch.demo.DAO.EmpresaDAO;
 import br.com.unipar.EstagioSerch.demo.DAO.VagaDAO;
+import br.com.unipar.EstagioSerch.demo.models.Empresa;
 import br.com.unipar.EstagioSerch.demo.models.Vaga;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +23,10 @@ public class VagaController {
     
     @Autowired
     private VagaDAO vagadao;
-    
      @GetMapping
     public String list(Model model){
     model.addAttribute("vagas", vagadao.lista());
-    model.addAttribute("page", "vaga/lista");
+    model.addAttribute("page", "listaVaga");
     return "main";
         
     }
@@ -42,7 +43,7 @@ public class VagaController {
         } else {
             model.addAttribute("vaga", new Vaga());
         }
-        model.addAttribute("page", "vaga/cadastro");
+        model.addAttribute("page", "cadastroVagas");
         return "main";
     }
     
