@@ -16,7 +16,7 @@ public class VagaDAO {
     public List<Vaga> lista(){
 
         String sql = 
-            "SELECT V.CD_VAGA, V.CD_AREA, V.DS_VAGA, V.DS_REQUISITOS, V.DS_TITULO\n" +
+            "SELECT V.CD_EMPRESA, V.CD_VAGA, V.CD_AREA, V.DS_VAGA, V.DS_REQUISITOS, V.DS_TITULO\n" +
             "FROM VAGA V";
 
         return template.query(sql, new VagaRowMapper());
@@ -39,11 +39,11 @@ public class VagaDAO {
     public void salvar(Vaga vaga){
         
         String sql = 
-            "INSERT INTO VAGA (CD_VAGA, CD_AREA, DS_VAGA, DS_REQUISITOS, DS_TITULO)\n" +
-            "VALUES(?, ?, ?, ?, ?)";
+            "INSERT INTO VAGA (CD_AREA,CD_EMPRESA, DS_VAGA, DS_REQUISITOS, DS_TITULO)\n" +
+            "VALUES(?, ? , ?, ?, ?)";
         
         Object[] parametros = 
-            {vaga.getCd_vaga(), vaga.getCd_area(), vaga.getDs_vaga(), 
+            {vaga.getCd_area(),vaga.getCd_empresa(), vaga.getDs_vaga(),
              vaga.getDs_requisitos(), vaga.getDs_titulo()};
         
         template.update(sql, parametros);

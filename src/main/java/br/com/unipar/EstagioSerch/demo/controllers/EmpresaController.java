@@ -20,11 +20,11 @@ public class EmpresaController {
     
     @Autowired
     private EmpresaDAO empresadao;
-    
+
     @GetMapping
-    public String list(Model model){
-    model.addAttribute("empresas", empresadao.lista());
-    model.addAttribute("page", "empresa/lista");
+    public String Perfil(Model model, Long cod){
+    model.addAttribute("empresa", empresadao.busca(cod));
+    model.addAttribute("page", "empresa");
     return "main";
         
     }
@@ -41,7 +41,7 @@ public class EmpresaController {
         } else {
             model.addAttribute("empresa", new Empresa());
         }
-        model.addAttribute("page", "empresa/cadastro");
+        model.addAttribute("page", "cadastroEmpresa");
         return "main";
     }
     

@@ -2,6 +2,7 @@ package br.com.unipar.EstagioSerch.demo.models;
 
 import java.util.Date;
 
+
 public class Empresa {
     
     private Long cd_empresa;
