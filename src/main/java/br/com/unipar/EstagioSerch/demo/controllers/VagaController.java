@@ -23,26 +23,29 @@ public class VagaController {
     
     @Autowired
     private VagaDAO vagadao;
-     @GetMapping
+    private EmpresaDAO empresadao;
+
+    @GetMapping
     public String list(Model model){
     model.addAttribute("vagas", vagadao.lista());
     model.addAttribute("page", "listaVaga");
     return "main";
-        
     }
-      @DeleteMapping("/{codigo}")
+
+    @DeleteMapping("/{codigo}")
     @ResponseStatus(HttpStatus.OK)
     public void deleta(@PathVariable("codigo") Long codigo) {
         vagadao.deletar(codigo);
     }
     
-     @GetMapping({"/cadastro", "/cadastro/{codigo}"})
+    @GetMapping({"/cadastro", "/cadastro/{codigo}"})
     public String cadastro(@PathVariable("codigo") Optional<Long> codigo, Model model) {
         if (codigo.isPresent()) {
             model.addAttribute("vaga", vagadao.busca(codigo.get()));
         } else {
             model.addAttribute("vaga", new Vaga());
         }
+        model.addAttribute("empresa", empresadao.lista());
         model.addAttribute("page", "cadastroVagas");
         return "main";
     }
