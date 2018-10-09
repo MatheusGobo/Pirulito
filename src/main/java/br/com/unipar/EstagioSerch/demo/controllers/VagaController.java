@@ -1,9 +1,7 @@
 
 package br.com.unipar.EstagioSerch.demo.controllers;
 
-import br.com.unipar.EstagioSerch.demo.DAO.EmpresaDAO;
 import br.com.unipar.EstagioSerch.demo.DAO.VagaDAO;
-import br.com.unipar.EstagioSerch.demo.models.Empresa;
 import br.com.unipar.EstagioSerch.demo.models.Vaga;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,30 +21,28 @@ public class VagaController {
     
     @Autowired
     private VagaDAO vagadao;
-    private EmpresaDAO empresadao;
-
-    @GetMapping
+    
+     @GetMapping
     public String list(Model model){
     model.addAttribute("vagas", vagadao.lista());
-    model.addAttribute("page", "listaVaga");
+    model.addAttribute("page", "vaga/lista");
     return "main";
+        
     }
-
-    @DeleteMapping("/{codigo}")
+      @DeleteMapping("/{codigo}")
     @ResponseStatus(HttpStatus.OK)
     public void deleta(@PathVariable("codigo") Long codigo) {
         vagadao.deletar(codigo);
     }
     
-    @GetMapping({"/cadastro", "/cadastro/{codigo}"})
+     @GetMapping({"/cadastro", "/cadastro/{codigo}"})
     public String cadastro(@PathVariable("codigo") Optional<Long> codigo, Model model) {
         if (codigo.isPresent()) {
             model.addAttribute("vaga", vagadao.busca(codigo.get()));
         } else {
             model.addAttribute("vaga", new Vaga());
         }
-        model.addAttribute("empresa", empresadao.lista());
-        model.addAttribute("page", "cadastroVagas");
+        model.addAttribute("page", "vaga/cadastro");
         return "main";
     }
     
