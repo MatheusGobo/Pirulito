@@ -14,12 +14,13 @@ public class Vaga {
 
     public Vaga(){}
 
-    public Vaga(Long cd_empresa,Long cd_area, String ds_vaga, String ds_requisitos, String ds_titulo) {
+    public Vaga(Long cd_empresa,Long cd_vaga,Long cd_area, String ds_vaga, String ds_requisitos, String ds_titulo) {
         this.cd_empresa = cd_empresa;
         this.cd_area = cd_area;
         this.ds_vaga = ds_vaga;
         this.ds_requisitos = ds_requisitos;
         this.ds_titulo = ds_titulo;
+        this.cd_vaga = cd_vaga;
     }
 
     public Long getCd_empresa() {

@@ -9,39 +9,46 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">Titulo da Vaga</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"  aria-describedby="inputGroup-sizing-default" th:field='*{ds_titulo}' >
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                   th:field='*{ds_titulo}'>
         </div>
         <!--AREA DE ATUAÇAO -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Area de Atuação</br> *Cod do Banco </span>
+                <span class="input-group-text" id="inputGroup-sizing-default">Area</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"  aria-describedby="inputGroup-sizing-default" th:field='*{cd_area}' >
+            <select id="pais" th:field="*{cd_area}">
+                <option value="">Selecione a Area de atuação.</option>
+                <option th:each="area : ${areas}" th:value="${area.cd_area}" th:text="${area.ds_area}" selected="selected"></option>
+            </select>
         </div>
 
         <!--EMPRESA -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Codigo da Empresa</br> *Cod do Banco (vai ser implementado com o Login da empresa Posteriormente)</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">Codigo da Empresa</br> *Cod do Banco (vai
+                    ser implementado com o Login da empresa Posteriormente)</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input"  aria-describedby="inputGroup-sizing-default" th:field='*{cd_empresa}' >
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+                   th:field='*{cd_empresa}'>
         </div>
 
-        <--
+        <!-- DESCRICAO DA VAGA -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Descrição da Vaga</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea" th:field='*{ds_vaga}' ></textarea>
+            <textarea class="form-control" aria-label="With textarea" th:field='*{ds_vaga}'></textarea>
         </div>
 
+        <!-- DESCRICAO REQUISITOS -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">Descrição dos requisitos</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea" th:field='*{ds_requisitos}' ></textarea>
+            <textarea class="form-control" aria-label="With textarea" th:field='*{ds_requisitos}'></textarea>
         </div>
-            <button type="submit"class="btn btn-success">Gravar</button>
+        <button type="submit" class="btn btn-success">Gravar</button>
     </form>
 
 </div>

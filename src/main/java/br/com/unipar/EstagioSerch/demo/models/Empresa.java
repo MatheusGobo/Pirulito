@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 public class Empresa {
-    
+
     private Long cd_empresa;
     private String nm_razao;
     private String nm_fantasia;
@@ -13,8 +13,9 @@ public class Empresa {
     private String st_universidade;
     private Date dt_registro;
 
-    public Empresa(){}
-    
+    public Empresa() {
+    }
+
     public Empresa(Long cd_empresa, String nm_razao, String nm_fantasia, String nr_cnpj, String nm_representante, String st_universidade, Date dt_registro) {
         this.cd_empresa = cd_empresa;
         this.nm_razao = nm_razao;
@@ -80,6 +81,6 @@ public class Empresa {
     public void setDt_registro(Date dt_registro) {
         this.dt_registro = dt_registro;
     }
-    
-    
+
+
 }

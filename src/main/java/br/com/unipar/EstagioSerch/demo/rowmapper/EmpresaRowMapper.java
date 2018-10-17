@@ -1,9 +1,11 @@
 package br.com.unipar.EstagioSerch.demo.rowmapper;
 
 import br.com.unipar.EstagioSerch.demo.models.Empresa;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+
 import org.springframework.jdbc.core.RowMapper;
 
 public class EmpresaRowMapper implements RowMapper<Empresa> {
