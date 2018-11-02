@@ -1,4 +1,3 @@
-
 <div xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
 
     <h2 data-th-cellspacing="20px">Vagas Disponiveis</h2>
@@ -7,18 +6,24 @@
         <div class="jumbotron">
 
             <h1 class="display-4" th:text="${vaga.ds_titulo}"></h1>
-            <p class="lead" th:text="${vaga.ds_requisitos}">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+            <p class="lead" th:text="${vaga.ds_requisitos}">This is a simple hero unit, a simple jumbotron-style
+                component for calling extra attention to featured content or information.</p>
             <hr class="my-4">
-            <p th:text="${vaga.ds_vaga}" >It uses utility classes for typography and spacing to space content out within the larger container.</p>
-            <h1 th:text="${cd_vaga}"></h1>
-            <a class="btn btn-primary" data-toggle="collapse" th:href="${cd_vaga}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Link with href
-            </a>
-            <div class="collapse" th:id="${cd_vaga}">
+
+
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" th:href="'#col_' + ${vaga.cd_vaga}" role="button"
+                   aria-expanded="false" aria-controls="collapseExample">
+                    +Mais Informações
+                </a>
+            </p>
+            <div class="collapse" th:id="'col_' + ${vaga.cd_vaga}">
                 <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    <p th:text="${vaga.ds_vaga}">Nada Informado</p>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>
