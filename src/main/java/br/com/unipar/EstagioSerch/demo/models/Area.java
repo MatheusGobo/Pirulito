@@ -18,6 +18,7 @@ public class Area {
 
     @Column(name = "dt_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date dt_registro;
+  
     public Area(){}
     
     public Area(Long cd_area, String ds_area) {
