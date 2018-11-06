@@ -1,13 +1,23 @@
 package br.com.unipar.EstagioSerch.demo.models;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "area")
+@SequenceGenerator(name = "area", sequenceName = "area_id_seq", allocationSize = 1)
 public class Area {
-    
-    private Long cd_area;
-    private String ds_area;
-    private Date dt_registro;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "area")
+    @Column(name = "cd_area")
+    private Long cd_area;
+
+    @Column(name = "ds_area", length = 128, nullable = false)
+    private String ds_area;
+
+    @Column(name = "dt_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private Date dt_registro;
     public Area(){}
     
     public Area(Long cd_area, String ds_area) {
