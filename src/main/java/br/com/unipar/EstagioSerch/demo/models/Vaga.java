@@ -1,34 +1,52 @@
 package br.com.unipar.EstagioSerch.demo.models;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "vaga")
+@SequenceGenerator(name = "vaga", sequenceName = "vaga_id_seq", allocationSize = 1)
 public class Vaga {
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vaga")
+    @Column(name = "cd_vaga")
     private Long cd_vaga;
-    private Long cd_area;
-    private Long cd_empresa;
+
+    @ManyToOne
+    private Area area;
+
+    @ManyToOne
+    private Empresa empresa;
+
+    @Column(name = "ds_vaga", length = 5000, nullable = false)
     private String ds_vaga;
+
+    @Column(name = "ds_requisitos", length = 128, nullable = false)
     private String ds_requisitos;
+
+    @Column(name = "ds_titulo", length = 128, nullable = false)
     private String ds_titulo;
+
+    @Column(name = "dt_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
     private Date dt_registro;
 
-    public Vaga(){}
+    public Vaga() {
+    }
 
-    public Vaga(Long cd_empresa,Long cd_vaga,Long cd_area, String ds_vaga, String ds_requisitos, String ds_titulo) {
-        this.cd_empresa = cd_empresa;
-        this.cd_area = cd_area;
+    public Vaga(Long cd_vaga, String ds_vaga, String ds_requisitos, String ds_titulo) {
         this.ds_vaga = ds_vaga;
         this.ds_requisitos = ds_requisitos;
         this.ds_titulo = ds_titulo;
         this.cd_vaga = cd_vaga;
     }
 
-    public Long getCd_empresa() {
-        return cd_empresa;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setCd_empresa(Long cd_empresa) {
-        this.cd_empresa = cd_empresa;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     public String getDs_titulo() {
@@ -47,14 +65,13 @@ public class Vaga {
         this.cd_vaga = cd_vaga;
     }
 
-    public Long getCd_area() {
-        return cd_area;
+    public Area getArea() {
+        return area;
     }
 
-    public void setCd_area(Long cd_area) {
-        this.cd_area = cd_area;
+    public void setArea(Area area) {
+        this.area = area;
     }
-
 
     public String getDs_vaga() {
         return ds_vaga;
@@ -79,6 +96,6 @@ public class Vaga {
     public void setDt_registro(Date dt_registro) {
         this.dt_registro = dt_registro;
     }
-    
-        
+
+
 }
