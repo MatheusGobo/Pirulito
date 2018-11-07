@@ -1,31 +1,25 @@
 package br.com.unipar.EstagioSerch.demo.controllers;
 
-import br.com.unipar.EstagioSerch.demo.DAO.EmpresaDAO;
 import br.com.unipar.EstagioSerch.demo.models.Empresa;
-
-import java.util.Optional;
-
+import br.com.unipar.EstagioSerch.demo.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/empresa")
 public class EmpresaController {
 
     @Autowired
-    private EmpresaDAO empresadao;
+    private EmpresaRepository empresaRepository;
 
     @GetMapping
     public String Perfil(Model model, Long cod) {
-        model.addAttribute("empresa", empresadao.busca(cod));
+        model.addAttribute("empresa", empresaRepository.findById(cod));
         model.addAttribute("page", "empresa");
         return "main";
 
@@ -34,13 +28,13 @@ public class EmpresaController {
     @DeleteMapping("/{codigo}")
     @ResponseStatus(HttpStatus.OK)
     public void deleta(@PathVariable("codigo") Long codigo) {
-        empresadao.deletar(codigo);
+        empresaRepository.deleteById(codigo);
     }
 
     @GetMapping({"/cadastro", "/cadastro/{codigo}"})
     public String cadastro(@PathVariable("codigo") Optional<Long> codigo, Model model) {
         if (codigo.isPresent()) {
-            model.addAttribute("empresa", empresadao.busca(codigo.get()));
+            model.addAttribute("empresa", empresaRepository.findById(codigo.get()).get());
         } else {
             model.addAttribute("empresa", new Empresa());
         }
@@ -50,11 +44,7 @@ public class EmpresaController {
 
     @PostMapping({"/cadastro", "/cadastro/{codigo}"})
     public String grava(@PathVariable("codigo") Optional<Long> codigo, Empresa empresa) {
-        if (codigo.isPresent()) {
-            empresadao.atualizar(codigo.get(), empresa);
-        } else {
-            empresadao.salvar(empresa);
-        }
+        empresaRepository.save(empresa);
         return "redirect:/index";
     }
 }
