@@ -36,7 +36,7 @@ public class VagaController {
         model.addAttribute("vagas", vagadao.lista());
         model.addAttribute("page", "listaVaga");
         return "main";
-    }
+}
 
     @DeleteMapping("/{codigo}")
     @ResponseStatus(HttpStatus.OK)

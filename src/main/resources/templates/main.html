@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/">
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+>
 
 <head>
 
@@ -100,7 +104,7 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        <li sec:authorize="hasRole('EMPRESA')"class="nav-item">
             <a class="nav-link" href="/vagas/cadastro">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Cadastro Vaga</span></a>
@@ -153,8 +157,14 @@
             </div>
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <form action="/logout" method="post" class="navbar-form navbar-right">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        Sair
+                    </button>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                </form>
+
             </div>
         </div>
     </div>
