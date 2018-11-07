@@ -1,28 +1,51 @@
 package br.com.unipar.EstagioSerch.demo.models;
 
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
-
+@Entity
+@Table(name = "Empresa")
+@SequenceGenerator(name = "empresa", sequenceName = "empresa_id_seq", allocationSize = 1)
 public class Empresa {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "empresa")
+    @Column(name = "cd_empresa")
     private Long cd_empresa;
+
+    @Column(name = "nm_razao", length = 128, nullable = false)
     private String nm_razao;
+
+    @Column(name = "nm_fantasia", length = 128)
     private String nm_fantasia;
+
+    @Column(name = "nr_cnpj", length = 32)
     private String nr_cnpj;
+
+    @Column(name = "nm_representante", length = 128,nullable = false)
     private String nm_representante;
-    private String st_universidade;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tp_categoriaEmpresa", length = 32, nullable = false)
+    private CategoriaEmpresa categoriaEmpresa;
+
+    @Column(name = "dt_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
     private Date dt_registro;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "empresa")
+    private List<Vaga> vagas;
 
     public Empresa() {
     }
 
-    public Empresa(Long cd_empresa, String nm_razao, String nm_fantasia, String nr_cnpj, String nm_representante, String st_universidade, Date dt_registro) {
+    public Empresa(Long cd_empresa, String nm_razao, String nm_fantasia, String nr_cnpj, String nm_representante, CategoriaEmpresa categoriaEmpresa, Date dt_registro) {
         this.cd_empresa = cd_empresa;
         this.nm_razao = nm_razao;
         this.nm_fantasia = nm_fantasia;
         this.nr_cnpj = nr_cnpj;
         this.nm_representante = nm_representante;
-        this.st_universidade = st_universidade;
+        this.categoriaEmpresa = categoriaEmpresa;
         this.dt_registro = dt_registro;
     }
 
@@ -66,12 +89,12 @@ public class Empresa {
         this.nm_representante = nm_representante;
     }
 
-    public String getSt_universidade() {
-        return st_universidade;
+    public CategoriaEmpresa getCategoriaEmpresa() {
+        return categoriaEmpresa;
     }
 
-    public void setSt_universidade(String st_universidade) {
-        this.st_universidade = st_universidade;
+    public void setCategoriaEmpresa(CategoriaEmpresa categoriaEmpresa) {
+        this.categoriaEmpresa = categoriaEmpresa;
     }
 
     public Date getDt_registro() {
@@ -82,5 +105,11 @@ public class Empresa {
         this.dt_registro = dt_registro;
     }
 
+    public List<Vaga> getVagas() {
+        return vagas;
+    }
 
+    public void setVagas(List<Vaga> vagas) {
+        this.vagas = vagas;
+    }
 }

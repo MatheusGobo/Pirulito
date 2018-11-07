@@ -2,6 +2,7 @@ package br.com.unipar.EstagioSerch.demo.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "area")
@@ -16,9 +17,12 @@ public class Area {
     @Column(name = "ds_area", length = 128, nullable = false)
     private String ds_area;
 
-    @Column(name = "dt_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "dt_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
     private Date dt_registro;
-  
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="area")
+    private List<Vaga> vagas;
+
     public Area(){}
     
     public Area(Long cd_area, String ds_area) {
@@ -49,6 +53,12 @@ public class Area {
     public void setDt_registro(Date dt_registro) {
         this.dt_registro = dt_registro;
     }
-    
-    
+
+    public List<Vaga> getVagas() {
+        return vagas;
+    }
+
+    public void setVagas(List<Vaga> vagas) {
+        this.vagas = vagas;
+    }
 }
