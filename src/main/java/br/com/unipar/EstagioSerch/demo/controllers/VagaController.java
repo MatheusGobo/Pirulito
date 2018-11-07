@@ -29,7 +29,7 @@ public class VagaController {
         model.addAttribute("vagas", vagaRepositorydao.findAll());
         model.addAttribute("page", "listaVaga");
         return "main";
-    }
+}
 
     @DeleteMapping("/{codigo}")
     @ResponseStatus(HttpStatus.OK)

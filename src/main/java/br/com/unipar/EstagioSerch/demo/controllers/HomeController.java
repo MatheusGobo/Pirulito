@@ -1,24 +1,28 @@
 
 package br.com.unipar.EstagioSerch.demo.controllers;
 
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 public class HomeController {
 
-    @PreAuthorize("hasRole('ALUNO')")
+    @RequestMapping(method = RequestMethod.GET, path = "/login")
+    public String login(Model model,boolean status) {
+        return "login";
+    }
+
+
     @RequestMapping("/")
     public String home(Model model,boolean status) {
-        /*    if(status == true) {
-            return "index";
-        }else{
-            return "login";
-        }*/
-        return "index";
+        model.addAttribute("page", "index");
+        return "main";
     }
+
 
 
 
