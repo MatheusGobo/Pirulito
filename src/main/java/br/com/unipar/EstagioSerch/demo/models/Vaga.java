@@ -28,7 +28,8 @@ public class Vaga {
     @Column(name = "ds_titulo", length = 128, nullable = false)
     private String ds_titulo;
 
-    @Column(name = "dt_registro", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
+    @GeneratedValue
+    @Column(name = "dt_registro", columnDefinition = "date DEFAULT CURRENT_DATE", nullable = false)
     private Date dt_registro;
 
     public Vaga() {

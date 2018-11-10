@@ -3,7 +3,7 @@
     <h2>Cadastro de Vaga</h2>
 
 
-    <form class="inline" method="post" th:object='${vaga}'>
+    <form class="inline" method="post" th:object='${vaga}' th:action="@{/vagas/cadastro}">
         <!--TITULO DA VAGA-->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -17,20 +17,20 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">Area</span>
             </div>
-            <select id="pais" th:field="*{cd_area}">
+            <select id="pais" th:field="*{area}">
                 <option value="">Selecione a Area de atuação.</option>
                 <option th:each="area : ${areas}" th:value="${area.cd_area}" th:text="${area.ds_area}" selected="selected"></option>
             </select>
         </div>
-
-        <!--EMPRESA -->
+        <!--AREA DE ATUAÇAO-->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Codigo da Empresa</br> *Cod do Banco (vai
-                    ser implementado com o Login da empresa Posteriormente)</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">Empresa</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-                   th:field='*{cd_empresa}'>
+            <select id="pais" th:field="*{empresa}">
+                <option value="">Selecione a Empresa de cadastro.</option>
+                <option th:each="empresa : ${empresas}" th:value="${empresa.cd_empresa}" th:text="${empresa.nm_razao}" selected="selected"></option>
+            </select>
         </div>
 
         <!-- DESCRICAO DA VAGA -->

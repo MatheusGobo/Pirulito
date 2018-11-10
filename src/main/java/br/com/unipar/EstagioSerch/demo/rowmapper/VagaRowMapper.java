@@ -13,17 +13,17 @@
 //    //Empresa empresa = new Empresa();
 //
 //    @Override
-//    public Vaga mapRow(ResultSet rs, int i) throws SQLException {
+//    public Vaga mapRow(ResultSet rs, int i)  {
 //
-////        //Long cd_empresa = empresa.getCd_empresa();
-////        Long cd_empresa = rs.getLong("cd_empresa");
-////        Long cd_vaga = rs.getLong("cd_vaga");
-////        Long cd_area = rs.getLong("cd_area");
-////        String ds_vaga = rs.getString("ds_vaga");
-////        String ds_requisitos = rs.getString("ds_requisitos");
-////        String ds_titulo = rs.getString("ds_titulo");
-////
-////        return new Vaga(cd_empresa, cd_vaga , cd_area, ds_vaga, ds_requisitos, ds_titulo);
+//        //Long cd_empresa = empresa.getCd_empresa();
+//        Long empresa = rs.getLong("cd_empresa");
+//        Long cd_vaga = rs.getLong("cd_vaga");
+//        Long area = rs.getLong("cd_area");
+//        String ds_vaga = rs.getString("ds_vaga");
+//        String ds_requisitos = rs.getString("ds_requisitos");
+//        String ds_titulo = rs.getString("ds_titulo");
+//
+//        return new Vaga(empresa, cd_vaga , area, ds_vaga, ds_requisitos, ds_titulo);
 //
 //    }
 //

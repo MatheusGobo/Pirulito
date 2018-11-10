@@ -1,6 +1,7 @@
 package br.com.unipar.EstagioSerch.demo.controllers;
 
 import br.com.unipar.EstagioSerch.demo.models.Empresa;
+import br.com.unipar.EstagioSerch.demo.repository.AreaRepository;
 import br.com.unipar.EstagioSerch.demo.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,12 @@ public class EmpresaController {
 
     @Autowired
     private EmpresaRepository empresaRepository;
+    private AreaRepository areaRepository;
+
+    public EmpresaController(AreaRepository areaRepository ) {
+        this.areaRepository = areaRepository;
+
+    }
 
     @GetMapping
     public String Perfil(Model model, Long cod) {
@@ -31,6 +38,8 @@ public class EmpresaController {
         empresaRepository.deleteById(codigo);
     }
 
+  
+
     @GetMapping({"/cadastro", "/cadastro/{codigo}"})
     public String cadastro(@PathVariable("codigo") Optional<Long> codigo, Model model) {
         if (codigo.isPresent()) {
@@ -38,7 +47,9 @@ public class EmpresaController {
         } else {
             model.addAttribute("empresa", new Empresa());
         }
+        model.addAttribute("areas", areaRepository.findAll());
         model.addAttribute("page", "cadastroEmpresa");
+
         return "main";
     }
 
